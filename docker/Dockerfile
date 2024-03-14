@@ -1,4 +1,4 @@
-FROM haveagitgat/tdarr_node:2.15.01 AS build
+FROM haveagitgat/tdarr_node:2.17.01 AS build
 
 ARG DOVI_TOOL_TAG="2.1.0"
 ARG MP4BPOX_TAG="v2.2.1"
@@ -26,7 +26,7 @@ RUN \
   wget -O - "https://github.com/quietvoid/dovi_tool/releases/download/${DOVI_TOOL_TAG}/dovi_tool-${DOVI_TOOL_TAG}-x86_64-unknown-linux-musl.tar.gz" | \
   tar -zx -C /usr/local/bin/
 
-FROM haveagitgat/tdarr_node:2.15.01
+FROM haveagitgat/tdarr_node:2.17.01
 
 COPY --from=build --chmod=755 /usr/local/bin/dovi_tool /usr/local/bin/
 
