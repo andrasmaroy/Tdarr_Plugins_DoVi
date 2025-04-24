@@ -1,5 +1,8 @@
-import { promises as fs } from 'fs';
+import { promises as fsp } from 'fs';
+import crypto from 'crypto';
 import { IpluginInputArgs } from './interfaces/interfaces';
+
+export const fileExists = async (path:string): Promise<boolean> => !!(await fsp.stat(path).catch(() => false));
 
 export const getContainer = (filePath: string): string => {
   const parts = filePath.split('.');
@@ -37,7 +40,7 @@ export const getSubStem = ({
 };
 
 export const getFileSize = async (file:string):Promise<number> => {
-  const stats = await fs.stat(file);
+  const stats = await fsp.stat(file);
   const { size } = stats;
   return size;
 };
@@ -160,4 +163,15 @@ export const getScanTypes = (pluginsTextRaw: string[]): IscanTypes => {
     });
   });
   return scanTypes;
+};
+
+export const hashFile = async (filePath: string, algorithm = 'sha256'): Promise<string> => {
+  try {
+    const data = await fsp.readFile(filePath);
+    const hash = crypto.createHash(algorithm).update(data).digest('hex');
+    return hash;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (error: any) {
+    throw new Error(`Error hashing file: ${error.message}`);
+  }
 };
