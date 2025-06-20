@@ -6,7 +6,7 @@ var fileUtils_1 = require("../../../../FlowHelpers/1.0.0/fileUtils");
 /* eslint-disable no-param-reassign */
 var details = function () { return ({
     name: 'Remux DoVi MP4',
-    description: "\n  If input is MP4, then the video stream from that with other streams from original file into mp4.\n  Otherwise the file is an MKV, remux that as is into MP4. Unsupported audio streams are removed in the process.\n  ",
+    description: "\n  If input is MP4, then the video stream from that with other streams from original file into mp4.\n  Otherwise the file is an MKV, remux that as is into MP4. All audio tracks will be kept.\n  ",
     style: {
         borderColor: '#6efefc',
     },
