@@ -1,4 +1,4 @@
-FROM haveagitgat/tdarr_node:2.15.01 AS build
+FROM ghcr.io/linuxserver/baseimage-ubuntu:focal-version-62a42c3c AS build
 
 ARG DOVI_TOOL_TAG="2.3.3"
 ARG MP4BPOX_TAG="v2.2.1"
